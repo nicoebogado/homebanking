@@ -33,6 +33,8 @@ $this->pageTitle="Bienvenido al HomeBanking - FIC";
 </div>
 <?php endif; ?>
 
+<?php Yii::app()->user->accounts->refresh(); ?>;
+
 <?php
 
 	$tabs = array(

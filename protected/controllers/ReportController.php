@@ -83,61 +83,122 @@ class ReportController extends Controller
 
 				// organizar datos para la plantilla
 				$details = $details->listacuentas->array[0];
-				if ($details->tipocuenta === 'AH') {
-					$datas = array(
-						'accountDenomination' => $details->denominacion,
-						'accountNumber' => $details->numerocuenta,
-						'maskedAccountNumber' => $account['maskedAccountNumber'],
-						'header' => array(
-							array(
-								'icon' => 'money',
-								'label' => Yii::t('accountDetails', 'Saldo Actual'),
-								'data' => $details->codigomoneda . ' ' . Yii::app()->numberFormatter->formatDecimal($details->monto1),
-							),
-							array(
-								'icon' => 'money',
-								'label' => Yii::t('accountDetails', 'Saldo Disponible'),
-								'data' => $details->codigomoneda . ' ' . Yii::app()->numberFormatter->formatDecimal($details->monto2),
-							),
-							array(
-								'icon' => 'circle-o',
-								'label' => Yii::t('accountDetails', 'Tasa de Interés'),
-								'data' => isset($details->tasa) ? (($details->codigomoneda != 'GS') ? number_format($details->tasa, 2) : $details->tasa) . ' %' : Yii::t('commons', 'No asignado'),
-							),
-						),
-						'panel' => array(
-							'accountDesc' => $details->descripciontipocuenta,
+				if ($details->tipocuenta === 'AH') { 
+					if ($details->descripciontipocuenta === 'AHORRO PROGRAMADO') {
+						$datas = array(
+							'accountDenomination' => $details->denominacion,
 							'accountNumber' => $details->numerocuenta,
-							array(
-								'icon' => 'calendar',
-								'label' => Yii::t('accountDetails', 'Fecha de Apertura'),
-								'data' => WebServiceClient::formatDate($details->fechainicio, 'long'),
+							'maskedAccountNumber' => $account['maskedAccountNumber'],
+							'header' => array(
+								array(
+									'icon' => 'money',
+									'label' => Yii::t('accountDetails', 'Monto Actual'),
+									'data' => $details->codigomoneda . ' ' . Yii::app()->numberFormatter->formatDecimal($details->monto1),
+								),
+								array(
+									'icon' => 'history',
+									'label' => Yii::t('accountDetails', 'Monto a Ahorrar'),
+									'data' => $details->codigomoneda . ' ' . Yii::app()->numberFormatter->formatDecimal($details->monto2),
+								),
+								array(
+									'icon' => 'line-chart',
+									'label' => Yii::t('accountDetails', 'Tasa de Interés'),
+									'data' => isset($details->tasa) ? (($details->codigomoneda != 'GS') ? number_format($details->tasa, 2) : $details->tasa) . ' %' : Yii::t('commons', 'No asignado'),
+								),
 							),
-							array(
-								'icon' => 'calendar',
-								'label' => Yii::t('accountDetails', 'Fecha de Vencimiento'),
-								'data' => WebServiceClient::formatDate($details->fechavencimiento, 'long'),
+							'panel' => array(
+								'accountDesc' => $details->descripciontipocuenta,
+								'accountNumber' => $details->numerocuenta,
+								array(
+									'icon' => 'calendar',
+									'label' => Yii::t('accountDetails', 'Fecha de Apertura'),
+									'data' => WebServiceClient::formatDate($details->fechainicio, 'long'),
+								),
+								array(
+									'icon' => 'check-square-o',
+									'label' => Yii::t('accountDetails', 'Cant. Cuotas Pagadas'),
+									'data' => $details->cuotaspagadas . ' de ' . $details->totalcuotas,
+								),
+								array(
+									'icon' => 'usd',
+									'label' => Yii::t('commons', 'Moneda'),
+									'data' => $details->codigomoneda,
+								),
+								array(
+									'icon' => 'bank',
+									'label' => Yii::t('accountDetails', 'Cuenta Débito'),
+									'data' => $details->datoadicional,
+								),
+								array(
+									'icon' => 'money',
+									'label' => Yii::t('accountDetails', 'Monto Cuota'),
+									'data' => $details-> codigomoneda . '. ' . Yii::app()->numberFormatter->formatDecimal($details->monto3),
+								),
+								//proximo pago
+								array(
+									'icon' => 'calendar',
+									'label' => Yii::t('accountDetails', 'Proximo Vencimiento'),
+									'data' => WebServiceClient::formatDate($details->fechavencimiento, 'long'),
+								),
+								null,
 							),
-							array(
-								'icon' => 'usd',
-								'label' => Yii::t('commons', 'Moneda'),
-								'data' => $details->codigomoneda,
+						);
+					} else {
+						$datas = array(
+							'accountDenomination' => $details->denominacion,
+							'accountNumber' => $details->numerocuenta,
+							'maskedAccountNumber' => $account['maskedAccountNumber'],
+							'header' => array(
+								array(
+									'icon' => 'money',
+									'label' => Yii::t('accountDetails', 'Saldo Actual'),
+									'data' => $details->codigomoneda . ' ' . Yii::app()->numberFormatter->formatDecimal($details->monto1),
+								),
+								array(
+									'icon' => 'money',
+									'label' => Yii::t('accountDetails', 'Saldo Disponible'),
+									'data' => $details->codigomoneda . ' ' . Yii::app()->numberFormatter->formatDecimal($details->monto2),
+								),
+								array(
+									'icon' => 'circle-o',
+									'label' => Yii::t('accountDetails', 'Tasa de Interés'),
+									'data' => isset($details->tasa) ? (($details->codigomoneda != 'GS') ? number_format($details->tasa, 2) : $details->tasa) . ' %' : Yii::t('commons', 'No asignado'),
+								),
 							),
+							'panel' => array(
+								'accountDesc' => $details->descripciontipocuenta,
+								'accountNumber' => $details->numerocuenta,
+								array(
+									'icon' => 'calendar',
+									'label' => Yii::t('accountDetails', 'Fecha de Apertura'),
+									'data' => WebServiceClient::formatDate($details->fechainicio, 'long'),
+								),
+								array(
+									'icon' => 'calendar',
+									'label' => Yii::t('accountDetails', 'Fecha de Vencimiento'),
+									'data' => WebServiceClient::formatDate($details->fechavencimiento, 'long'),
+								),
+								array(
+									'icon' => 'usd',
+									'label' => Yii::t('commons', 'Moneda'),
+									'data' => $details->codigomoneda,
+								),
 
-							array(
-								'icon' => 'money',
-								'label' => Yii::t('accountDetails', 'Saldo Retenido'),
-								'data' => $details->codigomoneda . ' ' . Yii::app()->numberFormatter->formatDecimal($details->monto3),
-							),
+								array(
+									'icon' => 'money',
+									'label' => Yii::t('accountDetails', 'Saldo Retenido'),
+									'data' => $details->codigomoneda . ' ' . Yii::app()->numberFormatter->formatDecimal($details->monto3),
+								),
 
-							array(
-								'icon' => 'reply',
-								'label' => Yii::t('accountDetails', 'Cheque Devuelto'),
-								'data' => $details->chequedevuelto == 'N' ? 'No' : 'Si',
+								array(
+									'icon' => 'reply',
+									'label' => Yii::t('accountDetails', 'Cheque Devuelto'),
+									'data' => $details->chequedevuelto == 'N' ? 'No' : 'Si',
+								),
+								null,
 							),
-							null,
-						),
-					);
+						);
+					}
 				} elseif ($details->tipocuenta === 'AP') {
 					$datas = array(
 						'accountDenomination' => $details->denominacion,
@@ -626,6 +687,9 @@ class ReportController extends Controller
 	{
 
 		if (isset($id) || isset($_POST['DepositsToConfirmForm'])) {
+
+			//Yii::log('depo 1');
+
 			$id = isset($id) ? $id : $_POST['DepositsToConfirmForm']['account'];
 
 			$accNumber = $this->_accountData($id);
@@ -645,6 +709,9 @@ class ReportController extends Controller
 
 			$this->render('depositsToConfirm', array('dataProvider' => $dataProvider));
 		} else {
+
+			//Yii::log('depo 2');
+
 			$model = new DepositsToConfirmForm;
 			$accounts = Yii::app()->user->accounts->getGridArray(array(
 				'conditions' => array(
@@ -655,6 +722,158 @@ class ReportController extends Controller
 			$this->render('depositsToConfirmForm', array('form' => $form));
 		}
 	}
+	
+	/**
+	 * Pre Aprobados action
+	 *
+	 * 
+	 */
+	public function actionPreAprobados($id = 'A')
+	{
+
+		
+
+		if (isset($id) || isset($_POST['PreAprobadosForm'])) {
+
+
+			//$id = isset($id) ? $id : $_POST['PreAprobadosForm']['account'];
+
+			//$accNumber = $this->_accountData($id);
+
+			//echo $accNumber;			
+
+			//Yii::log('PreAprobados 1.1 = '. implode (" ",$accNumber) );
+
+			//$qr = $this->qrDatos($invoice);
+
+
+			$documento = Yii::app()->user->getState('documento');
+
+			$response = $this->preAprobadosTest($documento);
+
+            
+			/*
+			$response = $this->preAprobadosTest(array(
+				'nroDocumento' => $accNumber['accountNumber'],
+			));
+			*/
+
+			//Yii::log('PreAprobados 1.2 = '. implode (" ",$response));
+			
+			/*$this->wsClient->getDepositsToConfirm(array(
+				'accountNumber' => $accNumber['accountNumber'],
+			));
+			*/
+
+			//$rawData = $response['cuotas'];
+
+		//	if ($response['codResultado'] == '00')
+		//	{
+
+				Yii::log('pasa1');
+
+			
+			$dataProvider = new CArrayDataProvider(
+				//isset($response) 
+				$response['codResultado'] == '00'
+				? array($response) : array(),
+				array(
+					'keyField' => 'referencia',
+					'pagination' => array(
+						'pageSize' => 10,
+					),
+				)
+			);
+
+			/*
+			$dataProvider = new CArrayDataProvider(
+				isset($response->listadepositosconfirmar->array) ? $response->listadepositosconfirmar->array : array(),
+				array(
+					'keyField' => 'nroboleta',
+					'pagination' => array(
+						'pageSize' => 10,
+					),
+				)
+			);
+			*/
+
+			$this->render('preAprobados', array('dataProvider' => $dataProvider, 'detalles' => $response['detalles'],));
+
+		//} else { 
+			//Yii::log('no tiene');
+
+		//}
+
+		} else {
+
+			Yii::log('PreAprobados 2');
+
+			$model = new PreAprobadosForm;
+			Yii::log('PreAprobados 3');
+			$accounts = Yii::app()->user->accounts->getGridArray(array(
+				'conditions' => array(
+					'accountType' => 'AH'
+				),
+			));
+			Yii::log('PreAprobados 4');
+			$form = new TbForm($model->formConfig($accounts), $model);
+			Yii::log('PreAprobados 5');
+			$this->render('preAprobadosForm', array('form' => $form));
+			Yii::log('PreAprobados 6');
+		}
+	}
+
+	/* Javier Lesme */
+
+	public function preAprobadosTest($request){
+
+		error_reporting(E_ALL);
+
+		//cambiar url a prod para publicar.
+		$url = 'https://10.90.20.174/api/public/preAprobado/consultar';
+
+		Yii::log('preAprobadosTest 1 = '.$request);
+
+		$ch = curl_init();
+		//'factura' => $datosFactura->numerofactura,
+		/*
+		$datos = [
+			'nroDocumento' => $request			
+		];
+		*/
+		//$fields_string="nroDocumento=".$request;
+
+		$fields_string = '{			
+			"nroDocumento": "'.$request.'"
+		}';
+
+		
+
+		Yii::log('preAprobadosTest 2 = '.$fields_string);
+
+		curl_setopt($ch, CURLOPT_URL,$url);
+		Yii::log('preAprobadosTest 3');
+		curl_setopt($ch, CURLOPT_POST, 1);
+		Yii::log('preAprobadosTest 4');
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+		Yii::log('preAprobadosTest 5');
+		curl_setopt($ch, CURLOPT_POSTFIELDS,($fields_string));
+		Yii::log('preAprobadosTest 6');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		Yii::log('preAprobadosTest 7');
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		Yii::log('preAprobadosTest 8');
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		Yii::log('preAprobadosTest 9');
+
+		$server_output = curl_exec($ch);
+		Yii::log('preAprobadosTest 10');
+		curl_close($ch);
+		Yii::log('preAprobadosTest 11');
+		return json_decode($server_output, true);
+
+	}
+	
 
 	public function actionAccountBalance()
 	{
@@ -807,6 +1026,8 @@ class ReportController extends Controller
 		return json_decode($server_output);
 
 	}
+
+	
 
 	public function actionInternationalTransactions()
 	{
@@ -1634,7 +1855,7 @@ class ReportController extends Controller
 		$curl = curl_init();
 
 		curl_setopt_array($curl, [
-			CURLOPT_URL => "https://10.90.7.16/apispi/public/api/listempresa/".$ci,
+			CURLOPT_URL => "https://10.90.20.197/test/apispi/public/api/listempresa/".$ci,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => "",
 			CURLOPT_MAXREDIRS => 10,

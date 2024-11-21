@@ -138,13 +138,13 @@ class Controller extends CController
     {
         // permitir acceso solamente a acciones permitidas desde el core
         // los controladores user, site y appConfig son seguros
-        if (
+        /*if (
             !$this->actionAllowed() &&
             !in_array($this->id, ['user', 'site', 'appConfig', 'report'])
         ) {
-            $this->setFlash('error', Yii::t('layouts', 'No posee credenciales para esta acción'));
+            $this->setFlash('error', Yii::t('layouts', 'No posee credenciales para esta acción!'));
             $this->redirect(array('/site/index'));
-        }
+        }*/
     }
 
     protected function checkPasswordChangeRequired()

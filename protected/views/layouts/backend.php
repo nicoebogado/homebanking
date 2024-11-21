@@ -200,7 +200,7 @@ function encript256($textoLetra){
       <li>
         <a title="Cuentas" data-toggle="collapse" href="#sb-<?php echo md5($opcion->descripcion); ?>">
           <?php switch ($opcion->intespanol):
-
+      
                     case 'Cuentas': ?>
               <em class="icon-notebook"></em>
             <?php break;
@@ -225,9 +225,14 @@ function encript256($textoLetra){
     <em class="icon-drawer"></em>
   <?php break;
 
+                    case 'Ahorro Programado' ?>
+  <em class="icon-share-alt"></em>
+  <?php break;
+
                     default: ?>
     <em class="icon-share-alt"></em>
 <?php break;
+
 
                   endswitch; ?>
 
@@ -239,6 +244,9 @@ function encript256($textoLetra){
         <?php else : ?>
           <li>
             <a href="<?php echo $this->createUrl($opcion->descripcionurl) ?>">
+              <?php if ($opcion->intespanol == 'Ahorro Programado') : ?>
+                <em class="icon-clock"></em>
+              <?php endif; ?>
               <span><?php echo ($lang == 'es') ? $opcion->intespanol : $opcion->intingles; ?></span>
             </a>
           </li>
