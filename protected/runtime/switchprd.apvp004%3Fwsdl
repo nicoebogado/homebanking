@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions name="PVP004" targetNamespace="Switch" xmlns:wsdlns="Switch" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="Switch">
+	<documentation>
+WS desarrollado por Bancard S.A.Desarrolladores: Osmar Gerke y Carlos AlsinaProcedimiento que recibe como parametros el número de tarjeta, el periodopreviamente seleccionado,  el Identificador y la contraseña de usuario(queserán validados en el sistema de Bancard), se devuelve como resultado eldetalle de los saldos, datos y movimientos del periodo correspondiente dela tarjeta consultada.El detalle de los parámetros es el siguiente:">NombreTipoI/OObservacionesNroTarjetaA(19)INúmero de la tarjeta de créditoFechaCierreN(8)IFecha de cierre del extracto anterior, en formato AAAAMMDD IdUsuarioA(10)IIdentificación de usuario habilitado para realizar transacciones víawebservicesPwdUsuarioA(10)IContraseña de usuario habilitado para realizar transacciones víawebservicesNombreClienteA(50)ONombre del cliente poseedor de la tarjetaMarcaA(50)ODescripción de la marca de la tarjetaClaseA(50)ODescripción de la clase de tarjetaAfinidadA(50)ODescripción de la afinidad a la que pertenece la tarjetaMonedaA(50)ODescripción de la moneda de la tarjetaLineaCreditoN(15,2)OLínea de crédito de la tarjetaSaldoDisponibleN(15,2)OSaldo disponible consolidado de la cuenta de la tarjeta de créditoSaldoAnteriorN(15,2)OSaldo del mes anterior de la cuenta de la tarjeta de créditoIntCorrienteN(15,2)OMonto de interés corriente correspondiente al mesIntMoratorioN(15,2)OMonto de interés moratorio correspondiente al mesGtosFinancierosN(15,2)OMonto de gastos financieros correspondiente al mesIVA5N(15,2)OMonto del IVA al 5% correspondiente al mesIVA10N(15,2)OMonto del IVA al 10% correspondiente al mesSaldoPendCuotasN(15,2)OSaldo de la deuda por compras en cuotas correspondiente al mesDeudaTotalN(15,2)OSaldo de la deuda total correspondiente al mesPagoMinimoN(15,2)OMonto del Pago Mínimo correspondiente al mesFechaVtoPagoMinN(8)OFecha del vencimiento del pago mínimo correspondiente al mes, en formatoAAAAMMDDTarConMovimientosV(n)OVector de n elementos que se describe en cuadro separado mas abajoLineasDetalleV(n)OVector de n elementos que se describe en cuadro separado mas abajoNroTransaccionN(15)ONúmero de transacción en InfonetCodRetornoA(2)OCódigo de retorno de esta solicitud (00=Aprobado, cualquier otrovalor=Transacción denegada)MsgRetornoA(120)OMensaje descriptivo del código de retornoTarConMovimientos:NombreTipoI/OObservacionesNroTarjetaA(19)ONúmero de la tarjeta de créditoTipoTarjetaA(1)OTipo de Tarjeta de crédito (P=Principal, A=Adicional)NombreClienteA(50)ONombre del cliente poseedor de la tarjeta LineasDetalle:NombreTipoI/OObservacionesNroTarjetaA(19)ONúmero de la tarjeta de crédito que realizó la transacciónTipoTransaccionA(1)OTipo de Transacción (Siempre igual a C, o sea Confirmado)FechaOperacionN(8)OFecha de operación de la transacción, en formato AAAAMMDD FechaProcesoN(8)OFecha de proceso del transacción, en formato AAAAMMDD NroCuponN(10)ONúmero de cupón o comprobanteDescripciónA(50)ODescripción de la transacción ImporteN(15)OImporte de la transacción
+	</documentation>
+	<types>
+		<schema targetNamespace="Switch" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" elementFormDefault="qualified">
+			<complexType name="SDTPV_TarConMovimientos">
+				<sequence>
+					<element minOccurs="0" maxOccurs="unbounded" name="SDTPV_TarConMovimientosItem" type="tns:SDTPV_TarConMovimientos.SDTPV_TarConMovimientosItem">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="SDTPV_TarConMovimientos.SDTPV_TarConMovimientosItem">
+				<sequence>
+					<element name="NroTarjeta" type="xsd:string">
+					</element>
+					<element name="TipoTarjeta" type="xsd:string">
+					</element>
+					<element name="NombreCliente" type="xsd:string">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="SDTPV_LineasDetalle">
+				<sequence>
+					<element minOccurs="0" maxOccurs="unbounded" name="SDTPV_LineasDetalleItem" type="tns:SDTPV_LineasDetalle.SDTPV_LineasDetalleItem">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="SDTPV_LineasDetalle.SDTPV_LineasDetalleItem">
+				<sequence>
+					<element name="NroTarjeta" type="xsd:string">
+					</element>
+					<element name="TipoTransaccion" type="xsd:string">
+					</element>
+					<element name="FechaOperacion" type="xsd:int">
+					</element>
+					<element name="FechaProceso" type="xsd:int">
+					</element>
+					<element name="NroCupon" type="xsd:long">
+					</element>
+					<element name="Descripcion" type="xsd:string">
+					</element>
+					<element name="Importe" type="xsd:long">
+					</element>
+				</sequence>
+			</complexType>
+			<element name="PVP004.Execute">
+				<complexType>
+					<sequence>
+						<element minOccurs="1" maxOccurs="1" name="Nrotarjeta" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Fechacierre" type="xsd:int"/>
+						<element minOccurs="1" maxOccurs="1" name="Idusuario" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Pwdusuario" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Nombrecliente" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Marca" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Clase" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Afinidad" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Moneda" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Lineacredito" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Saldodisponible" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Saldoanterior" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Intcorriente" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Intmoratorio" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Gtosfinancieros" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Iva5" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Iva10" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Saldopendcuotas" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Deudatotal" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Pagominimo" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Fechavtopagomin" type="xsd:int"/>
+						<element minOccurs="1" maxOccurs="1" name="Sdtpv_tarconmovimientos" type="tns:SDTPV_TarConMovimientos"/>
+						<element minOccurs="1" maxOccurs="1" name="Sdtpv_lineasdetalle" type="tns:SDTPV_LineasDetalle"/>
+						<element minOccurs="1" maxOccurs="1" name="Nrotransaccion" type="xsd:long"/>
+						<element minOccurs="1" maxOccurs="1" name="Codretorno" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Msgretorno" type="xsd:string"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="PVP004.ExecuteResponse">
+				<complexType>
+					<sequence>
+						<element minOccurs="1" maxOccurs="1" name="Nrotarjeta" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Fechacierre" type="xsd:int"/>
+						<element minOccurs="1" maxOccurs="1" name="Idusuario" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Pwdusuario" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Nombrecliente" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Marca" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Clase" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Afinidad" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Moneda" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Lineacredito" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Saldodisponible" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Saldoanterior" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Intcorriente" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Intmoratorio" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Gtosfinancieros" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Iva5" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Iva10" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Saldopendcuotas" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Deudatotal" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Pagominimo" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Fechavtopagomin" type="xsd:int"/>
+						<element minOccurs="1" maxOccurs="1" name="Sdtpv_tarconmovimientos" type="tns:SDTPV_TarConMovimientos"/>
+						<element minOccurs="1" maxOccurs="1" name="Sdtpv_lineasdetalle" type="tns:SDTPV_LineasDetalle"/>
+						<element minOccurs="1" maxOccurs="1" name="Nrotransaccion" type="xsd:long"/>
+						<element minOccurs="1" maxOccurs="1" name="Codretorno" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Msgretorno" type="xsd:string"/>
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+	</types>
+	<message name="PVP004.ExecuteSoapIn">
+		<part name="parameters" element="tns:PVP004.Execute"/>
+	</message>
+	<message name="PVP004.ExecuteSoapOut">
+		<part name="parameters" element="tns:PVP004.ExecuteResponse"/>
+	</message>
+	<portType name="PVP004SoapPort">
+		<operation name="Execute">
+			<input message="wsdlns:PVP004.ExecuteSoapIn"/>
+			<output message="wsdlns:PVP004.ExecuteSoapOut"/>
+		</operation>
+	</portType>
+	<binding name="PVP004SoapBinding" type="wsdlns:PVP004SoapPort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="Execute">
+			<soap:operation soapAction="Switchaction/APVP004.Execute"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="PVP004">
+		<port name="PVP004SoapPort" binding="wsdlns:PVP004SoapBinding">
+			<soap:address location="https://10.0.110.122/accesotst/servlet/switchprd.apvp004"/>
+		</port>
+	</service>
+</definitions>

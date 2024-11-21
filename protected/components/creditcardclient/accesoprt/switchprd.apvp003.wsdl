@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions name="PVP003" targetNamespace="Switch"
+	xmlns:wsdlns="Switch"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:tns="Switch">
+	<documentation>
+WS desarrollado por Bancard S.A.Desarrolladores: Osmar Gerke y Carlos AlsinaProcedimiento que recibe como parametros el número de tarjeta, elIdentificador y la contraseña de usuario(que serán validados en el sistemade Bancard), se devuelve como resultado los periodos de extractosdisponibles para la tarjeta.El detalle de los parámetros es el siguiente:">NombreTipoI/OObservacionesNroTarjetaA(19)INúmero de la tarjeta de créditoIdUsuarioA(10)IIdentificación de usuario habilitado para realizar transacciones víawebservicesPwdUsuarioA(10)IContraseña de usuario habilitado para realizar transacciones víawebservicesNombreClienteA(50)ONombre del cliente poseedor de la tarjetaMarcaA(50)ODescripción de la marca de la tarjetaClaseA(50)ODescripción de la clase de tarjetaAfinidadA(50)ODescripción de la afinidad a la que pertenece la tarjetaMonedaA(50)ODescripción de la moneda de la tarjetaCierresDisponiblesV(n)OVector de n elementos que se describe en cuadro separado mas abajoNroTransaccionN(15)ONúmero de transacción en InfonetCodRetornoA(2)OCódigo de retorno de esta solicitud (00=Aprobado, cualquier otrovalor=Transacción denegada)MsgRetornoA(120)OMensaje descriptivo del código de retornoCierresDisponibles:NombreTipoI/OObservacionesFechaCierreN(8)OFecha de cierre del extracto anterior, en formato AAAAMMDD
+	</documentation>
+	<types>
+		<schema targetNamespace="Switch"
+			xmlns="http://www.w3.org/2001/XMLSchema"
+			xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" elementFormDefault="qualified">
+			<complexType name="SDTPV_CierresDisponibles">
+				<sequence>
+					<element minOccurs="0" maxOccurs="unbounded" name="SDTPV_CierresDisponiblesItem" type="tns:SDTPV_CierresDisponibles.SDTPV_CierresDisponiblesItem">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="SDTPV_CierresDisponibles.SDTPV_CierresDisponiblesItem">
+				<sequence>
+					<element name="FechaCierre" type="xsd:int">
+					</element>
+				</sequence>
+			</complexType>
+			<element name="PVP003.Execute">
+				<complexType>
+					<sequence>
+						<element minOccurs="1" maxOccurs="1" name="Nrotarjeta" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Idusuario" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Pwdusuario" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Nombrecliente" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Marca" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Clase" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Afinidad" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Moneda" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Sdtpv_cierresdisponibles" type="tns:SDTPV_CierresDisponibles"/>
+						<element minOccurs="1" maxOccurs="1" name="Nrotransaccion" type="xsd:long"/>
+						<element minOccurs="1" maxOccurs="1" name="Codretorno" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Msgretorno" type="xsd:string"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="PVP003.ExecuteResponse">
+				<complexType>
+					<sequence>
+						<element minOccurs="1" maxOccurs="1" name="Nrotarjeta" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Idusuario" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Pwdusuario" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Nombrecliente" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Marca" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Clase" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Afinidad" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Moneda" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Sdtpv_cierresdisponibles" type="tns:SDTPV_CierresDisponibles"/>
+						<element minOccurs="1" maxOccurs="1" name="Nrotransaccion" type="xsd:long"/>
+						<element minOccurs="1" maxOccurs="1" name="Codretorno" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Msgretorno" type="xsd:string"/>
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+	</types>
+	<message name="PVP003.ExecuteSoapIn">
+		<part name="parameters" element="tns:PVP003.Execute"/>
+	</message>
+	<message name="PVP003.ExecuteSoapOut">
+		<part name="parameters" element="tns:PVP003.ExecuteResponse"/>
+	</message>
+	<portType name="PVP003SoapPort">
+		<operation name="Execute">
+			<input message="wsdlns:PVP003.ExecuteSoapIn"/>
+			<output message="wsdlns:PVP003.ExecuteSoapOut"/>
+		</operation>
+	</portType>
+	<binding name="PVP003SoapBinding" type="wsdlns:PVP003SoapPort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="Execute">
+			<soap:operation soapAction="Switchaction/APVP003.Execute"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="PVP003">
+		<port name="PVP003SoapPort" binding="wsdlns:PVP003SoapBinding">
+			<soap:address location="https://10.0.110.122/accesotst/servlet/switchprd.apvp003"/>
+		</port>
+	</service>
+</definitions>

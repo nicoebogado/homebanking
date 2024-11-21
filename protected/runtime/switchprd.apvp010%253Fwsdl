@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions name="PVP010" targetNamespace="Switch" xmlns:wsdlns="Switch" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="Switch">
+	<types>
+		<schema targetNamespace="Switch" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" elementFormDefault="qualified">
+			<element name="PVP010.Execute">
+				<complexType>
+					<sequence>
+						<element minOccurs="1" maxOccurs="1" name="Codclicomercio" type="xsd:int"/>
+						<element minOccurs="1" maxOccurs="1" name="Codsuccomercio" type="xsd:short"/>
+						<element minOccurs="1" maxOccurs="1" name="Tipooperacion" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Nrotarjeta" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Vtotarjeta" type="xsd:short"/>
+						<element minOccurs="1" maxOccurs="1" name="Monto" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Origen" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Cuotas" type="xsd:byte"/>
+						<element minOccurs="1" maxOccurs="1" name="Plancuota" type="xsd:byte"/>
+						<element minOccurs="1" maxOccurs="1" name="Nropedido" type="xsd:int"/>
+						<element minOccurs="1" maxOccurs="1" name="Idusuario" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Pwdusuario" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Nrotransaccion" type="xsd:long"/>
+						<element minOccurs="1" maxOccurs="1" name="Codretorno" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Msgretorno" type="xsd:string"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="PVP010.ExecuteResponse">
+				<complexType>
+					<sequence>
+						<element minOccurs="1" maxOccurs="1" name="Codclicomercio" type="xsd:int"/>
+						<element minOccurs="1" maxOccurs="1" name="Codsuccomercio" type="xsd:short"/>
+						<element minOccurs="1" maxOccurs="1" name="Tipooperacion" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Nrotarjeta" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Vtotarjeta" type="xsd:short"/>
+						<element minOccurs="1" maxOccurs="1" name="Monto" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Origen" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Cuotas" type="xsd:byte"/>
+						<element minOccurs="1" maxOccurs="1" name="Plancuota" type="xsd:byte"/>
+						<element minOccurs="1" maxOccurs="1" name="Nropedido" type="xsd:int"/>
+						<element minOccurs="1" maxOccurs="1" name="Idusuario" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Pwdusuario" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Nrotransaccion" type="xsd:long"/>
+						<element minOccurs="1" maxOccurs="1" name="Codretorno" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Msgretorno" type="xsd:string"/>
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+	</types>
+	<message name="PVP010.ExecuteSoapIn">
+		<part name="parameters" element="tns:PVP010.Execute"/>
+	</message>
+	<message name="PVP010.ExecuteSoapOut">
+		<part name="parameters" element="tns:PVP010.ExecuteResponse"/>
+	</message>
+	<portType name="PVP010SoapPort">
+		<operation name="Execute">
+			<input message="wsdlns:PVP010.ExecuteSoapIn"/>
+			<output message="wsdlns:PVP010.ExecuteSoapOut"/>
+		</operation>
+	</portType>
+	<binding name="PVP010SoapBinding" type="wsdlns:PVP010SoapPort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="Execute">
+			<soap:operation soapAction="Switchaction/APVP010.Execute"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="PVP010">
+		<port name="PVP010SoapPort" binding="wsdlns:PVP010SoapBinding">
+			<soap:address location="https://sbc.bancardnet.dom/acceso/servlet/switchprd.apvp010"/>
+		</port>
+	</service>
+</definitions>

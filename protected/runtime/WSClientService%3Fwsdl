@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://soap.easysol.net/detect/WSClientService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://soap.easysol.net/detect/detectService" name="WSClientService" targetNamespace="http://soap.easysol.net/detect/WSClientService">
+  <wsdl:import location="http://apghmll01.fic.com.py:8080/detect/services/WSClientService?wsdl=WSClientService.wsdl" namespace="http://soap.easysol.net/detect/detectService">
+    </wsdl:import>
+  <wsdl:binding name="WSClientServiceSoapBinding" type="ns1:WSClientService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="retrieveClientGlobalLockInformation">
+      <soap:operation soapAction="urn:retrieveClientGlobalLockInformation" style="document"/>
+      <wsdl:input name="retrieveClientGlobalLockInformation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="retrieveClientGlobalLockInformationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lockClient">
+      <soap:operation soapAction="urn:lockClient" style="document"/>
+      <wsdl:input name="lockClient">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="lockClientResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveClientInformation">
+      <soap:operation soapAction="urn:retrieveClientInformation" style="document"/>
+      <wsdl:input name="retrieveClientInformation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="retrieveClientInformationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unlockClient">
+      <soap:operation soapAction="urn:unlockClient" style="document"/>
+      <wsdl:input name="unlockClient">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="unlockClientResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveClientsCount">
+      <soap:operation soapAction="urn:retrieveClientsCount" style="document"/>
+      <wsdl:input name="retrieveClientsCount">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="retrieveClientsCountResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isClientPresent">
+      <soap:operation soapAction="urn:isClientPresent" style="document"/>
+      <wsdl:input name="isClientPresent">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="isClientPresentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateClientWithMail">
+      <soap:operation soapAction="urn:updateClientWithMail" style="document"/>
+      <wsdl:input name="updateClientWithMail">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateClientWithMailResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteClient">
+      <soap:operation soapAction="urn:deleteClient" style="document"/>
+      <wsdl:input name="deleteClient">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteClientResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveClientsList">
+      <soap:operation soapAction="urn:retrieveClientsList" style="document"/>
+      <wsdl:input name="retrieveClientsList">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="retrieveClientsListResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateClient">
+      <soap:operation soapAction="urn:updateClient" style="document"/>
+      <wsdl:input name="updateClient">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateClientResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createClient">
+      <soap:operation soapAction="urn:createClient" style="document"/>
+      <wsdl:input name="createClient">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createClientResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSClientService">
+    <wsdl:port binding="tns:WSClientServiceSoapBinding" name="WSClientServiceImplPort">
+      <soap:address location="http://apghmll01.fic.com.py:8080/detect/services/WSClientService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

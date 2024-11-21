@@ -1,0 +1,53 @@
+.voucher{
+  background:#FFFFFF;padding:30px;
+}
+.head{
+  border-bottom:1px solid #ccc; padding-bottom:20px;
+}
+.head img{
+  width:150px; height:auto;
+}
+
+.holder{
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px 0px;
+}
+
+.holder p{
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.holder table{
+  text-align: left;
+}
+
+.holder table tr td{
+  padding: 0px 50px 5px 0px;
+}
+
+.holder table tr td:first-child{
+  font-weight: bold;
+}
+
+.holder table tr td:nth-child(2){
+  text-transform: uppercase;
+}
+
+.details h4{
+  font-size: 14px;
+}
+
+.details table tr td{
+  padding: 0px 20px 5px 0px;
+}
+
+.details table tr td:first-child{
+  font-weight: bold;
+}
+
+#print{
+  text-decoration:none;
+  float: right;
+}

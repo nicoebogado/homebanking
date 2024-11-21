@@ -1,0 +1,26 @@
+.navbar-header .nav > li > a {
+    position: relative;
+	display: block;
+	padding: 10px;
+}
+
+.navbar-header .navbar-nav > li > a {
+    padding-top: 17px;
+    padding-bottom: 17px;
+}
+
+.user-block .brand-logo-collapsed {
+    display: none;
+}
+
+.aside-collapsed .user-block .brand-logo-collapsed {
+    display: block;
+}
+
+.aside-collapsed .user-block .brand-logo {
+    display: none;
+}
+
+.user-block .brand-logo > img, .user-block .brand-logo-collapsed > img {
+    margin: 0px auto;
+}

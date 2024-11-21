@@ -1,0 +1,45 @@
+div.invoice-container {
+	background-color: white;
+	border: 1px solid #000;
+}
+div.invoice-header {
+	border: 1px solid #000;
+}
+div.invoice-header > div.row:first-child > div {
+	border: 2px solid #000;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	min-height: 170px;
+}
+/*div.invoice-body {
+	border-bottom: 1px solid #000;
+}*/
+div.invoice-body > div.row > div {
+	border-right: 1px solid #000;
+	border-left: 1px solid #000;
+}
+div.invoice-body > div.row:first-child > div {
+	border: 1px solid #000;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	min-height: 50px;
+}
+div.invoice-body > div.row:first-child > div:last-child {
+	padding-top: 0;
+	padding-bottom: 0;
+	border: none;
+}
+div.invoice-body > div.row > div > div.row > div {
+	border-right: 1px solid #000;
+	border-left: 1px solid #000;
+}
+div.invoice-body > div.row:first-child > div > div.row > div {
+	border: 1px solid #000;
+	min-height: 25px;
+}
+div.invoice-body > div.row:last-child > div {
+	border: 1px solid #000;
+}
+div.invoice-footer {
+	border: 2px solid #000;
+}

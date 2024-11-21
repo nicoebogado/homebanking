@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions name="PVP001" targetNamespace="Switch"
+	xmlns:wsdlns="Switch"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:tns="Switch">
+	<documentation>
+WS desarrollado por Bancard S.A.Desarrolladores: Osmar Gerke y Carlos AlsinaProcedimiento que recibe como parametros el número de tarjeta, elIdentificador y la contraseña de usuario(que serán validados en el sistemade Bancard), se devuelve como resultado los principales saldos y datos dela tarjeta consultada.El detalle de los parámetros es el siguiente:NombreTipoI/OObservacionesNroTarjetaA(19)INúmero de la tarjeta de créditoIdUsuarioA(10)IIdentificación de usuario habilitado para realizar transacciones víawebservicesPwdUsuarioA(10)IContraseña de usuario habilitado para realizar transacciones víawebservicesNombreClienteA(50)ONombre del cliente poseedor de la tarjetaMarcaA(50)ODescripción de la marca de la tarjetaClaseA(50)ODescripción de la clase de tarjetaAfinidadA(50)ODescripción de la afinidad a la que pertenece la tarjetaMonedaA(50)ODescripción de la moneda de la tarjetaLineaCreditoN(15,2)OLínea de crédito de la tarjetaDispCompraNormalN(15,2)OSaldo disponible para compras normales de la tarjeta de créditoDispCompraCuotasN(15,2)OSaldo disponible para compras en cuotas de la tarjeta de créditoDispAvanceEfectivoN(15,2)OSaldo disponible para Avances de Efectivo de la tarjeta de créditoDeudaCompraNormalN(15,2)OSaldo de la deuda por compras normales de la tarjeta de créditoDeudaCompraCuotasN(15,2)OSaldo de la deuda por compras en cuotas de la tarjeta de créditoDeudaTotalN(15,2)OSaldo de la deuda total de la tarjeta de créditoDeudaEnMoraN(15,2)OSaldo de la deuda en mora de la tarjeta de créditoPagoMinPendienteN(15,2)OMonto del Pago Mínimo aún pendiente de la tarjeta de créditoFechaVtoPagoMinN(8)OFecha del vencimiento del pago mínimo de la tarjeta de crédito, en formatoAAAAMMDDFechaProxCierreN(8)OFecha del próximo cierre de la tarjeta de crédito, en formato AAAAMMDDNroTransaccionN(15)ONúmero de transacción en InfonetCodRetornoA(2)OCódigo de retorno de esta solicitud (00=Aprobado, cualquier otrovalor=Transacción denegada)MsgRetornoA(50)OMensaje descriptivo del código de retorno
+	</documentation>
+	<types>
+		<schema targetNamespace="Switch"
+			xmlns="http://www.w3.org/2001/XMLSchema"
+			xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" elementFormDefault="qualified">
+			<element name="PVP001.Execute">
+				<complexType>
+					<sequence>
+						<element minOccurs="1" maxOccurs="1" name="Nrotarjeta" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Idusuario" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Pwdusuario" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Nombrecliente" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Marca" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Clase" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Afinidad" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Moneda" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Lineacredito" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Dispcomprasnormal" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Dispcompracuotas" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Dispavanceefectivo" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Deudacompranormal" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Deudacompracuotas" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Deudatotal" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Deudaenmora" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Pagominpendiente" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Fechavtopagomin" type="xsd:int"/>
+						<element minOccurs="1" maxOccurs="1" name="Fechaproxcierre" type="xsd:int"/>
+						<element minOccurs="1" maxOccurs="1" name="Nrotransaccion" type="xsd:long"/>
+						<element minOccurs="1" maxOccurs="1" name="Codretorno" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Msgretorno" type="xsd:string"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="PVP001.ExecuteResponse">
+				<complexType>
+					<sequence>
+						<element minOccurs="1" maxOccurs="1" name="Nrotarjeta" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Idusuario" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Pwdusuario" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Nombrecliente" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Marca" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Clase" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Afinidad" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Moneda" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Lineacredito" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Dispcomprasnormal" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Dispcompracuotas" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Dispavanceefectivo" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Deudacompranormal" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Deudacompracuotas" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Deudatotal" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Deudaenmora" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Pagominpendiente" type="xsd:double"/>
+						<element minOccurs="1" maxOccurs="1" name="Fechavtopagomin" type="xsd:int"/>
+						<element minOccurs="1" maxOccurs="1" name="Fechaproxcierre" type="xsd:int"/>
+						<element minOccurs="1" maxOccurs="1" name="Nrotransaccion" type="xsd:long"/>
+						<element minOccurs="1" maxOccurs="1" name="Codretorno" type="xsd:string"/>
+						<element minOccurs="1" maxOccurs="1" name="Msgretorno" type="xsd:string"/>
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+	</types>
+	<message name="PVP001.ExecuteSoapIn">
+		<part name="parameters" element="tns:PVP001.Execute"/>
+	</message>
+	<message name="PVP001.ExecuteSoapOut">
+		<part name="parameters" element="tns:PVP001.ExecuteResponse"/>
+	</message>
+	<portType name="PVP001SoapPort">
+		<operation name="Execute">
+			<input message="wsdlns:PVP001.ExecuteSoapIn"/>
+			<output message="wsdlns:PVP001.ExecuteSoapOut"/>
+		</operation>
+	</portType>
+	<binding name="PVP001SoapBinding" type="wsdlns:PVP001SoapPort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="Execute">
+			<soap:operation soapAction="Switchaction/APVP001.Execute"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="PVP001">
+		<port name="PVP001SoapPort" binding="wsdlns:PVP001SoapBinding">
+			<soap:address location="https://10.0.110.122/accesotst/servlet/switchprd.apvp001"/>
+		</port>
+	</service>
+</definitions>

@@ -1,0 +1,17 @@
+<?php return array(
+	'Resumen de Cuentas' => 'Account Summary',
+	'Denominación' => 'Denomination',
+	'Saldo Actual' => 'Current Balance',
+	'Detalles' => 'Details',
+	'Movimientos' => 'Movements',
+	'Chequeras' => 'Checkbooks',
+	'Cuotas' => 'Fees',
+	'Tarjetas Adicionales' => 'Aditional Cards',
+	'Cuentas de Ahorro' => 'Saving Accounts',
+	'Tarjetas de Crédito' => 'Credit Cards',
+	'Préstamos' => 'Loans',
+	'Extracto del Mes'=>'Current Summary',
+	'Extracto Anteriores'=>'Previous Summary',
+	'Saldo Actual'=>'Current Balance',
+	'Saldo al día de ayer'=>'Yesterday Balance',
+);

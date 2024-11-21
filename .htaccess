@@ -1,0 +1,17 @@
+RewriteEngine on
+
+# prevent httpd from serving dotfiles (.htaccess, .svn, .git, etc.)
+RedirectMatch 403 /\..*$
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# otherwise forward it to index.php
+RewriteRule . index.php
+
+RewriteCond %{REQUEST_FILENAME} vendor/ [OR]
+RewriteCond %{REQUEST_FILENAME} composer.phar [OR]
+RewriteCond %{REQUEST_FILENAME} composer.json [OR]
+RewriteCond %{REQUEST_FILENAME} composer.lock
+RewriteRule . index.php [L]
+
+

@@ -1,0 +1,162 @@
+/* ========================================================================
+   Component: Barra superior
+ ========================================================================== */
+
+.nav-wrapper{
+  background:#faa61a;
+}
+
+.topnavbar .navbar-header {
+    background-color: transparent;
+    background-image: -webkit-linear-gradient(left, #faa61a 0%, #fdb813 100%);
+    background-image: -o-linear-gradient(left, #faa61a 0%, #fdb813 100%);
+    background-image: linear-gradient(to right, #faa61a 0%, #fdb813 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa61a', endColorstr='#fdb813', GradientType=1);
+}
+
+.topnavbar .navbar-nav > li > a, .topnavbar .navbar-nav > .open > a {
+    color: #000;
+}
+
+@media only screen and (min-width: 768px){
+  .topnavbar .navbar-nav > li > a, .topnavbar .navbar-nav > .open > a {
+      color: #fff;
+  }
+}
+
+
+/* ========================================================================
+   Component: Barra de menu lateral
+ ========================================================================== */
+
+.sidebar {
+  background: #808285;
+}
+
+.sidebar > .nav > li{
+  color : #000;
+  background: #808285;
+  border-left: none;
+}
+
+.sidebar > .nav > li.active > a{
+  background : #808285;
+  color: #ffffff;
+}
+
+.sidebar > .nav > li > a{
+  color : #ffffff;
+  background: #808285;
+}
+
+.sidebar > .nav > li > a:hover,
+.sidebar > .nav > li > a:active,
+.sidebar > .nav > li > a:focus{
+  color : #ccc;
+}
+
+.user-block .user-block-info .user-block-name,
+.user-block .user-block-info .user-block-role{
+  color: #ffffff;
+}
+
+.sidebar-subnav > li {
+  background: #808285;
+}
+
+.sidebar-subnav > li > a, .sidebar-subnav > li > .nav-item {
+  color: #ffffff;
+}
+
+.sidebar-subnav > li > a:hover{
+  color : #ccc;
+}
+
+.sidebar > .nav > li.active > a > em{
+  color : #ffffff;
+}
+
+/* ========================================================================
+   Component: Botones
+ ========================================================================== */
+
+.btn-primary {
+  color: #ffffff;
+  background-color: #f9791a;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #ffffff;
+  background-color: #fa710c;
+  border-color: #3483e7;
+}
+
+.btn-danger {
+  color: #ffffff;
+  background-color: #f9a314;
+  border-color: #faa61a;
+}
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger.focus,
+.btn-danger:active,
+.btn-danger.active,
+.open > .dropdown-toggle.btn-danger {
+  color: #ffffff;
+  background-color: #f99d04;
+  border-color: #faa61a;
+}
+
+
+/* ========================================================================
+   Component: Paginacion de tablas
+ ========================================================================== */
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: #f99d04;
+    border-color: #f9791a;
+}
+
+/* ========================================================================
+   Component: Steps de wizard (Descripcion de cada paso)
+ ========================================================================== */
+
+.wizard > .steps .current a, .wizard > .steps .current a:hover, .wizard > .steps .current a:active {
+    background: #f99d04;
+}
+
+/* ========================================================================
+   Component: Botones wizard
+ ========================================================================== */
+
+.wizard > .actions a, .wizard > .actions a:hover, .wizard > .actions a:active {
+    background-color: #f9791a;
+    border-color: #f9791a;
+}
+
+.wizard > .actions a:hover,
+.wizard > .actions a:hover:hover,
+.wizard > .actions a:active:hover,
+.wizard > .actions a:focus,
+.wizard > .actions a:hover:focus,
+.wizard > .actions a:active:focus,
+.wizard > .actions a.focus,
+.wizard > .actions a:hover.focus,
+.wizard > .actions a:active.focus,
+.wizard > .actions a:active,
+.wizard > .actions a:hover:active,
+.wizard > .actions a:active:active,
+.wizard > .actions a.active,
+.wizard > .actions a:hover.active,
+.wizard > .actions a:active.active,
+.open > .dropdown-toggle.wizard > .actions a,
+.open > .dropdown-toggle.wizard > .actions a:hover,
+.open > .dropdown-toggle.wizard > .actions a:active {
+  background-color: #f9791a;
+  border-color: #f9791a;
+}

@@ -1,0 +1,3 @@
+(function ($) {
+	$('.secureKeypadInput').secureKeypad();
+})(jQuery);

@@ -1,0 +1,15 @@
+<?php return array(
+	'Saldo al Día' => 'Current Balance',
+  'Saldo al Día Anterior'=> 'Yesterday Balance',
+  'Tarjeta'=>'Card #',
+  'Tipo'=>'Type',
+  'Moneda'=>'Currency',
+  'Línea de Crédito'=>'Line of Credit',
+  'Deuda Total'=>'Total Debt',
+  'Saldo Disponible'=>'Balance in Hand',
+  'Próximo cierre de Extracto'=>'Next billing cycle',
+  'Monto pago mínimo'=>'Minimum payment amount',
+  'Próximo vencimiento'=>'Next expiration date',
+  'Tása de interes nominal'=>'Interest Rate',
+	'Período'=>'Billing period',
+);
